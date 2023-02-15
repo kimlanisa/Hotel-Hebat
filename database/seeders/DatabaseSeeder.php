@@ -13,6 +13,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \DB::table('users')->insert([
+            [
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => \Hash::make('12345678'),
+                'roles' => 'ADMIN'
+            ],
+            [
+                'name' => 'Resepsionis',
+                'email' => 'resepsionis@gmail.com',
+                'password' => \Hash::make('12345678'),
+                'roles' => 'RESEPSIONIS'
+            ]
+        ]);
     }
 }
