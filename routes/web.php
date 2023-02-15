@@ -45,6 +45,7 @@ Route::get('/admin-resepsionis', [ResepsionisController::class, 'index']);
 });
 Route::resource('/', TamuController::class);
 Route::get('/', [TamuController::class, 'index']);
+Route::get('/invoice', [TamuController::class, 'invoice']);
 
 
 Route::resource('/hotel', HotelController::class);

@@ -59,6 +59,7 @@ class TamuController extends Controller
         $kamar->update([
             'jml_kamar' => $kamar->jml_kamar - $request->jml_kamar,
         ]);
+        $code = 'HEBAT-' . mt_rand(00000,99999);
         Tamu::create([
             'tipe_kamar_id' => $request->tipe_kamar,
             'nama_pemesan' => $request->nama_pemesan,
@@ -68,8 +69,14 @@ class TamuController extends Controller
             'tgl_checkin' => $request->tgl_checkin,
             'tgl_checkout' => $request->tgl_checkout,
             'jml_kamar' => $request->jml_kamar,
+            'code' => $code,
         ]);
-        return redirect('/')->with('pesan', 'Pesan kamar telah berhasil');
+        return redirect('/invoice')->with('pesan', 'Pesan kamar telah berhasil');
+    }
+
+    public function invoice(){
+        $invoice = Tamu::with('AdminKamar')->latest()->first();
+        return view('tamu.invoice', compact('invoice'));
     }
 
     /**
