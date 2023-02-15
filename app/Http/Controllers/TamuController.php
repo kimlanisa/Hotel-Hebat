@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AdminKamar;
 use App\Models\AdminFasHotel;
+use App\Models\AdminFasKamar;
 use App\Models\Tamu;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,9 @@ class TamuController extends Controller
     {
         $admin = AdminKamar::get();
         $fas_hotel = AdminFasHotel::get();
+        $fas_kamar = AdminFasKamar::with('AdminKamar')->get();
         $tamu = Tamu::with('AdminKamar')->get();
-        return view('tamu.tamu', compact('tamu', 'admin', 'fas_hotel'));
+        return view('tamu.tamu', compact('tamu', 'admin', 'fas_hotel', 'fas_kamar'));
     }
 
     /**

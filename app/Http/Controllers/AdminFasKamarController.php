@@ -46,7 +46,6 @@ class AdminFasKamarController extends Controller
         ];
 
         $request->validate([
-            'tipe_kamar_id' => 'required|unique:admin_fas_kamar',
             'nama_fasilitas' => 'required',
         ], $message);
 

@@ -45,6 +45,26 @@
              <div class="card-body">
               <div class="card">
                   <div class="card-header">
+                    <h4 class="text-center">Fasilitas Kamar</h4>
+                  </div>
+                  <div class="card-body text-white">
+                    <h4>Delux</h4>
+                   @foreach ($fas_kamar as $item)
+                   <ul>
+                    <li>{{$item->nama_fasilitas}}</li>
+                  </ul>
+                   @endforeach
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+
+          <div class="gaming-library3 mt-4">
+            <div class="col-lg-12">
+             <div class="card-body">
+              <div class="card">
+                  <div class="card-header">
                     <h4 class="text-center">Tentang Kami</h4>
                   </div>
                   <div class="card-body text-white">
