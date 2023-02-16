@@ -40,13 +40,7 @@
                                   {{ $message }}
                             @enderror
                     </div>
-                     <div class="form-group">
-                      <label>Gambar</label>
-                      <input type="file" class="form-control @error('gambar') is-invalid @enderror"  name="gambar">
-                         @error('gambar')
-                                  {{ $message }}
-                            @enderror
-                    </div>
+        
                          <div  style="text-align: right" class="mt-3">
                           
                       <a href="/admin-fas-kamar" class="button2 btn">Kembali</a>

@@ -20,6 +20,7 @@
                                         <tr>
                                             <th>Tipe Kamar</th>
                                             <th>Jumlah Kamar</th>
+                                            <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -29,12 +30,22 @@
                                             <td>{{$row->tipe_kamar}}</td>
                                             <td>{{$row->jml_kamar}}</td>
                                             <td>
+                                            <img src="{{ asset('img/'. $row->gambar )}}"alt="" srcset="" style="width: 200px; height: 300px; object-fit: contain;">
+                                            </td>
+                                            <td>
+                                              <form  action="{{route('admin.destroy', $row->id)}}" method="POST">
+
                                               <a class="btn btn-sm btn-info btn-circle"  data-toggle="modal" data-target="#exampleModal-{{$row->id}}">
                                                         <i class="fas fa-eye"></i>
                                               </a>
                                               <a class="btn btn-sm btn-success btn-circle"  data-toggle="modal" data-target="#DiexampleModal1-{{$row->id}}">
                                                         <i class="fas fa-edit"></i>
                                               </a>
+                                                @csrf @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-danger btn-circle">
+                                                  <i class="fas fa-trash"></i>
+                                                </button>
+                                                </form>
                                             </td>
                                         </tr>
                                       @endforeach
@@ -86,8 +97,8 @@
 
 
                          <div  style="text-align: right">
-                        <a href="{{route('fas-hotel.update', $show->id)}}" style="text-decoration: none">
-                     <button class="button2 btn mb-3" style="margin-right: 15px">Tambah</button></a>
+                        {{-- <a href="{{route('fas-hotel.update', $show->id)}}" style="text-decoration: none">
+                     <button class="button2 btn mb-3" style="margin-right: 15px">View</button></a> --}}
                     </div>
                     </form>
                   </div>
@@ -118,7 +129,7 @@
                 @method('put')
               <div class="card">
                   <div class="card-header">
-                    <h4>Edit Fasilitas</h4>
+                    <h4>Edit Kamar</h4>
                   </div>
                   <div class="card-body text-white">
                        <div class="form-group">
@@ -135,11 +146,19 @@
                                   {{ $message }}
                             @enderror
                     </div>
+                    <div class="form-group">
+                      <label>Gambar</label>
+                      <input type="file" class="form-control @error('gambar') is-invalid @enderror"  value="{{$edit->gambar}}" name="gambar">
+                         @error('gambar')
+                                  {{ $message }}
+                            @enderror
+                            <input type="hidden" name="url" value="{{$edit->gambar}}">
+                    </div>
 
 
                         <div  style="text-align: right">
                         <a>
-                     <button class="button2 btn mb-3" style="margin-right: 15px">Tambah</button></a>
+                     <button class="button2 btn mb-3" style="margin-right: 15px">Edit</button></a>
                     </div>
                     </form>
                   </div>

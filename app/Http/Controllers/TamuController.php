@@ -17,11 +17,17 @@ class TamuController extends Controller
      */
     public function index()
     {
-        $admin = AdminKamar::get();
+        $admin = AdminKamar::with('AdminFasKamar')->get();
         $fas_hotel = AdminFasHotel::get();
         $fas_kamar = AdminFasKamar::with('AdminKamar')->get();
         $tamu = Tamu::with('AdminKamar')->get();
         return view('tamu.tamu', compact('tamu', 'admin', 'fas_hotel', 'fas_kamar'));
+    }
+
+    public function booking()
+    {
+        $admin = AdminKamar::get();
+        return view('tamu.booking', compact('admin'));
     }
 
     /**

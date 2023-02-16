@@ -19,7 +19,7 @@
                     <h4>Tambah Data Kamar</h4>
                   </div>
                   <div class="card-body text-white">
-                    <form action="{{route('admin.store')}}" method="POST">
+                    <form action="{{route('admin.store')}}" method="POST" enctype="multipart/form-data">
                       @csrf
                     <div class="form-group">
                       <label>Tipe Kamar</label>
@@ -32,6 +32,13 @@
                       <label>Jumlah Kamar</label>
                       <input type="number" class="form-control @error('jml_kamar') is-invalid @enderror"  name="jml_kamar">
                          @error('jml_kamar')
+                                  {{ $message }}
+                            @enderror
+                    </div>
+                    <div class="form-group">
+                      <label>Gambar</label>
+                      <input type="file" class="form-control @error('gambar') is-invalid @enderror"  name="gambar">
+                         @error('gambar')
                                   {{ $message }}
                             @enderror
                     </div>

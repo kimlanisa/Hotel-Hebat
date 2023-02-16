@@ -50,14 +50,12 @@ class AdminFasKamarController extends Controller
         ], $message);
 
 
-        $nm = $request->gambar;
-       $namaFile = time().rand(100,900).".".$nm->getClientOriginalExtension();
 
        $dtUpload = new AdminFasKamar;
        $dtUpload->tipe_kamar_id = $request->tipe_kamar_id;
        $dtUpload->nama_fasilitas = $request->nama_fasilitas;
-       $dtUpload->gambar = $namaFile;
-        $nm->move(public_path().'/img', $namaFile);
+    
+    
         $dtUpload->save();
 
 

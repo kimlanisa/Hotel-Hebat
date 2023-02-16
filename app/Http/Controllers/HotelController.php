@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\AdminFasHotel;
 class HotelController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return view('tamu.hotel');
+        $fas_hotel = AdminFasHotel::get();
+        return view('tamu.hotel', compact('fas_hotel'));
     }
 
     /**

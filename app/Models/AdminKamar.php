@@ -11,7 +11,7 @@ class AdminKamar extends Model
     protected $guarded = ['id'];
     use HasFactory;
  
-    public function AdminKamar() {
-        return $this->hasMany(AdminFasKamar::class, 'tipe_kamar_id', 'id');
+    public function AdminFasKamar() {
+        return $this->hasOne(AdminFasKamar::class, 'tipe_kamar_id', 'id');
     }
 }

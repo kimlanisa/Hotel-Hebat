@@ -20,7 +20,6 @@
                                         <tr>
                                             <th>Tipe Kamar</th>
                                             <th>Nama Fasilitas</th>
-                                            <th>Gambar</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -31,19 +30,16 @@
                                           
                                             <td>{{$row->AdminKamar->tipe_kamar ?? ''}}</td>
                                             <td>{{$row->nama_fasilitas}}</td>
-                                             <td>
-
-                                                <img src="{{ asset('img/'. $row->gambar )}}"alt="" srcset="" style="width: 200px; height: 300px; object-fit: contain;">
-
-                                            </td>
+                                           
                                             <td>
                                               {{-- <a class="btn btn-sm btn-info btn-circle"  data-toggle="modal" data-target="#exampleModal-{{$row->id}}">
                                                         <i class="fas fa-eye"></i>
                                               </a> --}}
+                                              <form action="{{route('fas-kamar.destroy', $row->id)}}" method="POST">
+
                                               <a class="btn btn-sm btn-success btn-circle"  data-toggle="modal" data-target="#exampleModal-{{$row->id}}">
                                                         <i class="fas fa-edit"></i>
                                               </a>
-                                              <form action="{{route('fas-kamar.destroy', $row->id)}}" method="POST">
                                                 @csrf @method('delete')
                                                 <button type="submit" class="btn btn-sm btn-danger btn-circle">
                                                   <i class="fas fa-trash"></i>
@@ -106,14 +102,7 @@
                                   {{ $message }}
                             @enderror
                     </div>
-                      <div class="form-group">
-                      <label>Gambar</label>
-                      <input type="file" class="form-control @error('gambar') is-invalid @enderror"  value="{{$edit->gambar}}" name="gambar">
-                         @error('gambar')
-                                  {{ $message }}
-                            @enderror
-                            <input type="hidden" name="url" value="{{$edit->gambar}}">
-                    </div>
+                      
 
 
                         <div  style="text-align: right">

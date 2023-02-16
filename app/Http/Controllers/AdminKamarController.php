@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AdminKamar;
 use App\Models\AdminFasHotel;
+use App\Models\AdminFasKamar;
 use Illuminate\Http\Request;
 
 class AdminKamarController extends Controller
@@ -48,10 +49,15 @@ class AdminKamarController extends Controller
             'jml_kamar' => 'required',
         ], $message);
 
-        AdminKamar::create([
-            'tipe_kamar' => $request->tipe_kamar,
-            'jml_kamar' => $request->jml_kamar,
-        ]);
+        $nm = $request->gambar;
+        $namaFile = time().rand(100,900).".".$nm->getClientOriginalExtension();
+
+        $dtUpload = new AdminKamar;
+        $dtUpload->tipe_kamar = $request->tipe_kamar;
+        $dtUpload->jml_kamar = $request->jml_kamar;
+        $dtUpload->gambar = $namaFile;
+         $nm->move(public_path().'/img', $namaFile);
+         $dtUpload->save();
         return redirect('/admin-kamar')->with('pesan', 'Kamar baru berhasil ditambahkan');
     }
 
@@ -101,10 +107,17 @@ class AdminKamarController extends Controller
         ], $message);
 
         $admin = AdminKamar::find($id);
-
+        $nm = $request->gambar;
+        if ($request->file()) {
+        $namaFile = time().rand(100,900).".".$nm->getClientOriginalExtension();
+        $nm->move(public_path().'/img', $namaFile);
+        } else {
+            $namaFile = $request->url;
+        };
         $admin->update([
            'tipe_kamar' => $request->tipe_kamar,
             'jml_kamar' => $request->jml_kamar,
+            'gambar' => $namaFile
         ]);
         return redirect('/admin-kamar')->with('pesan', 'Barang berhasil diedit');
     }
@@ -117,6 +130,10 @@ class AdminKamarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = AdminKamar::findOrFail($id);
+        $fas_kamar = AdminFasKamar::where('tipe_kamar_id', $id);
+        $fas_kamar->delete();
+        $item->delete();
+        return redirect('/admin-kamar')->with('pesan', "Barang berhasil di hapus");
     }
 }

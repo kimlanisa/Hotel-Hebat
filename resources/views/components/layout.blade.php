@@ -65,6 +65,7 @@ https://templatemo.com/tm-579-cyborg-gaming
 
 
 
+            @include('components.footer')
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>

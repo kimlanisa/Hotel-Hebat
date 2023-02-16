@@ -16,6 +16,7 @@
                                 <th>Nama Tamu</th>
                                   <th>Tanggal Cek In</th>
                                   <th>Tanggal Cek Out</th>
+                                  <th>Jumlah Pesan</th>
                                   <th>Aksi</th>
                               </tr>
                           </thead>
@@ -50,6 +51,7 @@
                 { data: 'nama_tamu', name: 'nama_tamu' },
                 { data: 'tgl_checkin', name: 'tgl_checkin' },
                 { data: 'tgl_checkout', name: 'tgl_checkout' },
+                { data: 'jml_kamar', name: 'jml_kamar' },
                 {
                     data: 'action',
                     name: 'action',

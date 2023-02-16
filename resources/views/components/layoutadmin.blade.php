@@ -75,6 +75,7 @@ https://templatemo.com/tm-579-cyborg-gaming
             {{$slot}}
 
 
+            @include('components.footer')
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

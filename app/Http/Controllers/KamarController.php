@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AdminKamar;
+use App\Models\AdminFasKamar;
 
 class KamarController extends Controller
 {
@@ -13,7 +15,8 @@ class KamarController extends Controller
      */
     public function index()
     {
-        return view('tamu.kamar');
+        $kamar = AdminKamar::with('AdminFasKamar')->get();
+        return view('tamu.kamar', compact('kamar'));
     }
 
     /**
